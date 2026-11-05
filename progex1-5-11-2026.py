@@ -6,6 +6,7 @@ else:
  clear = lambda: os.system('clear')
 dados=[-3.0,-2.0,-1.0,0.0,1.0,2.0,3.0]
 opcao = '0'
+clear()
 while True:   
  print("Opções:")
  print("1)Função exponencial")
