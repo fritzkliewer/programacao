@@ -13,6 +13,7 @@ while True:
  print("3)Ambas as funções")
  print("4)Sair") 
  if opcao=='4':
+   clear()
    break
  fx = []
  gx = []
