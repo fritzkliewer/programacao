@@ -41,6 +41,6 @@ executar:
 ## para rodar/interpretar o arquivo .py use:
 
 ```bash
-python progex1-5-11-2026.py
+python3 progex1-5-11-2026.py
 ```
 
