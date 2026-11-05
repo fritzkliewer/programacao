@@ -23,7 +23,7 @@ while True:
     fx.append([x,p])
     gx.append([p,math.log(p,2)])
  if opcao=='1' or opcao=='3': 
-  print("f(x)=2\u00bx")
+  print("f(x)=2\u02e3")
   print("-" * 20)
   print(f"{'x':<10} {'f(x)':<10}")
   print("-" * 20)
