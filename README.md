@@ -28,7 +28,7 @@ LINUX
 
 compilar:
 ```bash
-gcc progex1-5-11-2026.c -o progex1-5-11-2026
+gcc progex1-5-11-2026.c -o progex1-5-11-2026 -lm
 ```
 executar:
 ```bash
