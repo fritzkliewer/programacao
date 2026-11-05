@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <locale.h>
+#include <stdbool.h>
 
 int main()
 {
@@ -19,14 +20,17 @@ int main()
         while (getchar() != '\n');
         if (opcao == '4')
             break;
-        printf("---------------\n| %4s | %4s |\n---------------\n", "x", "f(x)");
-        if (opcao == '1' || opcao == '3')
+        
+        if (opcao == '1' || opcao == '3'){
+            printf("---------------\n%s%11s\n---------------\n", "x", "f(x)");
             for (i = 0; i < 7; i++)
                 printf("%6.2f %6.3f\n", dados[i], pow(2, dados[i]));
-        printf("%6s %6s\n", "x", "g(x)");
-        if (opcao == '2' || opcao == '3')
+        }
+        if (opcao == '2' || opcao == '3'){
+            printf("---------------\n%s%11s\n---------------\n", "x", "g(x)");
             for (i = 0; i < 7; i++)
                 printf("%6.3f %6.2f\n", pow(2, dados[i]), log(pow(2, dados[i])) / log(2));
+        }
     }
     return 0;
 }
