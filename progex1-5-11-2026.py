@@ -23,13 +23,18 @@ while True:
     fx.append([x,p])
     gx.append([p,math.log(p,2)])
  if opcao=='1' or opcao=='3': 
-  print("f(x)=2\u02e3")
+  print(" ")
+  print("-" * 20)
+  print(f"{'f(x)=2\u02e3':<5}")
   print("-" * 20)
   print(f"{'x':<10} {'f(x)':<10}")
   print("-" * 20)
   for row in fx:
     print(f"{row[0]:<10} {row[1]:<10}")
- if opcao=='2' or opcao=='3':  
+ if opcao=='2' or opcao=='3':    
+  print(" ")
+  print("-" * 20)
+  print(f"{'g(x)=log\u2082x':<5}")
   print("-" * 20)
   print(f"{'x':<10} {'g(x)':<10}")
   print("-" * 20)
