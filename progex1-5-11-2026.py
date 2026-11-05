@@ -1,6 +1,9 @@
 import math
 import os
-clear = lambda: os.system('clear')
+if os.name=='nt':
+ clear = lambda: os.system('cls')
+else:
+ clear = lambda: os.system('clear')
 dados=[-3.0,-2.0,-1.0,0.0,1.0,2.0,3.0]
 opcao = '0'
 while True:   
@@ -8,8 +11,7 @@ while True:
  print("1)Função exponencial")
  print("2)Função logarítmica")
  print("3)Ambas as funções")
- print("4)Sair")
- 
+ print("4)Sair") 
  if opcao=='4':
    break
  fx = []
