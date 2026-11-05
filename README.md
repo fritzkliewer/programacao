@@ -16,7 +16,7 @@ cd programacao
 
 WINDOWS
 
-instale MSYS2 [Link Text](https://example.com](https://www.msys2.org/))
+instale [MSYS2](https://www.msys2.org/)
 
 compilar:
 ```bash
