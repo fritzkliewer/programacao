@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <math.h>
 #include <locale.h>
-#include <conio.h>
 
 int main()
 {
