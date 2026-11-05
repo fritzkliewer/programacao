@@ -5,7 +5,7 @@ atividades e avaliações
 ## para clonar o repositório use:
 
 ```bash
-gh repo clone fritzkliewer/programacao
+git clone https://github.com/fritzkliewer/programacao.git
 ```
 
 ## para compilar e executar o arquivo .c use:
