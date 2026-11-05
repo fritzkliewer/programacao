@@ -40,12 +40,11 @@ executar:
 ```bash
 ./progex1-5-11-2026
 ```
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
 ## para rodar/interpretar o arquivo .py use:
-
 ```bash
 python3 progex1-5-11-2026.py
 ```
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
 
