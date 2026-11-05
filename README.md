@@ -2,6 +2,12 @@
 
 atividades e avaliações
 
+## para clonar o repositório use:
+
+```bash
+gh repo clone fritzkliewer/programacao
+```
+
 ## para compilar o arquivo .c use:
 
 ```bash
