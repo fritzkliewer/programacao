@@ -7,6 +7,10 @@ atividades e avaliações
 ```bash
 git clone https://github.com/fritzkliewer/programacao.git
 ```
+Mude para o diretório criado
+```bash
+cd programacao
+```
 
 ## para compilar e executar o arquivo .c use:
 
