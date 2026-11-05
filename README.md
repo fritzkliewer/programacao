@@ -16,6 +16,8 @@ cd programacao
 
 WINDOWS
 
+instale MSYS2 [Link Text](https://example.com](https://www.msys2.org/))
+
 compilar:
 ```bash
 gcc progex1-5-11-2026.c -o progex1-5-11-2026.exe
