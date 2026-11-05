@@ -20,13 +20,13 @@ compilar:
 ```bash
 gcc progex1-5-11-2026.c -o progex1-5-11-2026.exe
 ```
-executar:
-```bash
-progex1-5-11-2026.exe
-```
-ou
+executar no command prompt:
 ```bash
 progex1-5-11-2026
+```
+ou executar no power shell:
+```bash
+./progex1-5-11-2026
 ```
 LINUX
 
