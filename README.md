@@ -14,29 +14,29 @@ WINDOWS
 
 compilar:
 ```bash
-gcc escola3o.c -o escola3o.exe
+gcc progex1-5-11-2026.c -o progex1-5-11-2026.exe
 ```
 executar:
 ```bash
-escola3o.exe
+progex1-5-11-2026.exe
 ```
 ou
 ```bash
-escola3o
+progex1-5-11-2026
 ```
 LINUX
 
 compilar:
 ```bash
-gcc escola3o.c -o escola3o
+gcc progex1-5-11-2026.c -o progex1-5-11-2026
 ```
 executar:
 ```bash
-./escola3o
+./progex1-5-11-2026
 ```
 ## para rodar/interpretar o arquivo .py use:
 
 ```bash
-python escola3o.py
+python progex1-5-11-2026.py
 ```
 
