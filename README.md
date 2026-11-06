@@ -44,7 +44,7 @@ executar:
 ```bash
 python3 progex1-5-11-2026.py
 ```
-## License
+## Licença
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
