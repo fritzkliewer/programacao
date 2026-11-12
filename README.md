@@ -12,7 +12,7 @@ Mude para o diretório criado
 cd programacao
 ```
 
-## para compilar e executar o arquivo .c use:
+## para compilar e executar os arquivos .c use:
 
 WINDOWS
 
@@ -20,29 +20,29 @@ instale [MSYS2](https://www.msys2.org/)
 
 compilar:
 ```bash
-gcc progex1-5-11-2026.c -o progex1-5-11-2026.exe
+gcc [nome do arquivo].c -o [nome do arquivo].exe
 ```
 executar no command prompt:
 ```bash
-progex1-5-11-2026
+[nome do arquivo]
 ```
 ou executar no power shell:
 ```bash
-./progex1-5-11-2026
+./[nome do arquivo]
 ```
 LINUX
 
 compilar:
 ```bash
-gcc progex1-5-11-2026.c -o progex1-5-11-2026 -lm
+gcc [nome do arquivo].c -o [nome do arquivo] -lm
 ```
 executar:
 ```bash
 ./progex1-5-11-2026
 ```
-## para rodar/interpretar o arquivo .py use:
+## para rodar/interpretar os arquivos .py use:
 ```bash
-python3 progex1-5-11-2026.py
+python3 [nome do arquivo].py
 ```
 ## Licença
 
