@@ -2,53 +2,64 @@ import pygame
 from pygame.locals import *
 from sys import exit
 import numpy as np
-import time
 
-duracao=1
+duracao=0.5
 sample_rate = 44100
+oitavas = 5  
+menoroitava = 2  
+FADEOUT = duracao  
+teclasbrancas = ["C","D","E","F","G","A","B",]
+teclaspretas = ["C#", "D#", "F#", "G#", "A#"]
 
 notasW = {
-    "A": {"oitava":4,"freq":440},
-    "B": {"oitava":4,"freq":493.8833},
-    "C": {"oitava":5,"freq":523.2511},
-    "D": {"oitava":5,"freq":587.3295}
+    "A": [{"info":{"oitava":3,"freq":220}},{"info":{"oitava":4,"freq":440}},{"info":{"oitava":5,"freq":880}}],
+    "B": [{"info":{"oitava":3,"freq":246.9417}},{"info":{"oitava":4,"freq":493.8833}},{"info":{"oitava":5,"freq":987.7666}}],
+    "C": [{"info":{"oitava":4,"freq":130.8128}},{"info":{"oitava":5,"freq":523.2511}},{"info":{"oitava":6,"freq":1108.73}}],
+    "D": [{"info":{"oitava":4,"freq":146.8324}},{"info":{"oitava":5,"freq":587.3295}},{"info":{"oitava":6,"freq":587.3295}}],
+    "E": [{"info":{"oitava":4,"freq":164.8138}},{"info":{"oitava":5,"freq":587.3295}},{"info":{"oitava":6,"freq":659.2551}}],
+    "F": [{"info":{"oitava":4,"freq":174.6141}},{"info":{"oitava":5,"freq":587.3295}},{"info":{"oitava":6,"freq":698.4565}}],
+    "G": [{"info":{"oitava":4,"freq":195.9977}},{"info":{"oitava":5,"freq":587.3295}},{"info":{"oitava":6,"freq":783.9909}}]
     }
 
+res = next((sub for sub in notasW["A"] if sub['info']["oitava"] == 3), None)
+print(res["info"]["freq"])
+
 notasB = {
-    "A#": {"oitava":4,"freq":466.1638},
-    "C#": {"oitava":5,"freq":554.3653},
+    "A#":[ {"info":{"oitava":3,"freq":233.0819}},{"info":{"oitava":4,"freq":466.1638}},{"info":{"oitava":5,"freq":932.3275}}],
+    "C#":[ {"info":{"oitava":4,"freq":277.1826}},{"info":{"oitava":5,"freq":554.3653}},{"info":{"oitava":6,"freq":1108.731}}],
 }
 
 teclas={
-    "a":"A",
-    "A":"A#",
-    "s":"B",
-    "d":"C",
-    "D":"C#",
-    "f":"D"
+    "g":{"nota":"A","oitava":4},
+    "y":{"nota":"A#","oitava":4},
+    "h":{"nota":"B","oitava":4},
+    "j":{"nota":"C","oitava":5},
+    "i":{"nota":"C#","oitava":5},
+    "l":{"nota":"D","oitava":5}
 }
 
 def load_img(name):
-    fullname = name
+    nome = name
     try:
-        image = pygame.image.load(fullname)
-        if image.get_alpha() is None:
-            image = image.convert()
+        imagem = pygame.image.load(nome)
+        if imagem.get_alpha() is None:
+            imagem = imagem.convert()
         else:
-            image = image.convert_alpha()
-    except pygame.error as message:
-        print("Error: couldn't load image: ", fullname)
-        raise SystemExit(message)
-    return (image, image.get_rect())
+            imagem = imagem.convert_alpha()
+    except pygame.error as mensagem:
+        print("Error: couldn't load imagem: ", nome)
+        raise SystemExit(mensagem)
+    return (imagem, imagem.get_rect())
 
-def play_tone(nota,notadados, duration=0.5, volume=0.5):  
-  octave_offset = (notadados["oitava"]- LOWEST) * width
-  if nota in WHITE_KEYS:
-    w = WHITE_KEYS.index(nota) * white_key_width
-    w = w + octave_offset
+def play_tone(oitava,nota,notadados, duracao=0.5, volume=0.5):  
+  res = next((sub for sub in notadados if sub['info']["oitava"] == oitava), None)
+  offsetoitava = (res["info"]["oitava"]- menoroitava) * width
+  if nota in teclasbrancas:
+    w = teclasbrancas.index(nota) * largteclabranca
+    w = w + offsetoitava
     playing_w.append([w, tick, nota])
   else:
-    i = BLACK_KEYS.index(nota)
+    i = teclaspretas.index(nota)
     if i == 0:
         w = 18
     elif i == 1:
@@ -59,51 +70,34 @@ def play_tone(nota,notadados, duration=0.5, volume=0.5):
         w = 151
     else:
         w = 187
-    w = w + octave_offset
-    playing_b.append([w, tick, nota])
-    
-  notes = playing_w + playing_b
-  notes.sort()
+    w = w + offsetoitava
+    playing_b.append([w, tick, nota])    
+  notas = playing_w + playing_b
+  notas.sort()
   notenames = []
-  for n in notes:
+  for n in notas:
     notenames.append(n[2])
-
-  t = np.linspace(0, duration, int(sample_rate * duration), True)
-  wave = np.sin(2 * np.pi * notadados["freq"]* t) * np.exp(-3 * t)
+  t = np.linspace(0, duracao, int(sample_rate * duracao), True)
+  wave = np.sin(2 * np.pi * res["info"]["freq"]* t) * np.exp(-3 * t)
   audio = (wave * (2.15**15 - 1) * volume).astype(np.int16)
   sound = pygame.sndarray.make_sound(audio)
   sound.play()
   return sound
-  #time.sleep(duration)
-
-OCTAVES = 5  # number of octaves to show
-LOWEST = 2  # lowest octave to show
-FADEOUT = 0.25  # coloration fadeout time (1 tick = 0.001)
-WHITE_KEY = 0
-BLACK_KEY = 1
-WHITE_KEYS = ["C","D","E","F","G","A","B",]
-BLACK_KEYS = ["C#", "D#", "F#", "G#", "A#"]
-
 
 pygame.mixer.pre_init(channels=1, allowedchanges=0)
 pygame.init()
 pygame.font.init()
 font = pygame.font.SysFont("monospace", 12)
-
-x, y = 0, 0
-move_x, move_y = 0, 0
-
 screen = pygame.display.set_mode((640, 480))
 (key_graphic, kgrect) = load_img("keys.png")
 (width, height) = (kgrect.width, kgrect.height)
-white_key_width = width / 7
-pygame.display.set_mode((OCTAVES * width, height + 20))
-pygame.display.set_caption("mingus piano")
+largteclabranca = width / 7
+pygame.display.set_mode((oitavas * width, height + 20))
+pygame.display.set_caption("piano")
 octave = 4
-channel = 8
-pressed = pygame.Surface((white_key_width, height))
+pressed = pygame.Surface((largteclabranca, height))
 pressed.fill((0, 230, 0))
-text = pygame.Surface((width * OCTAVES, 20))
+text = pygame.Surface((width * oitavas, 20))
 text.fill((255, 255, 255))
 playing_w = []  # white keys being played right now
 playing_b = []  # black keys being played right now
@@ -111,7 +105,7 @@ quit = False
 tick = 0.0
 
 while True:
-    for x in range(OCTAVES):
+    for x in range(oitavas):
         screen.blit(key_graphic, (x * width, 0))
     for note in playing_w:
       diff = tick - note[1]
@@ -134,14 +128,14 @@ while True:
     sound=0
     if event.type == TEXTINPUT :   
         if event.text in teclas:
-         nota=teclas[event.text]
+         nota=teclas[event.text]["nota"]
          notadados=0
          if nota in notasW:
              notadados=notasW[nota]
          elif nota in notasB:
              notadados=notasB[nota]
          if notadados!=0:
-          sound=play_tone(nota,notadados ,duration=duracao)     
+          sound=play_tone(teclas[event.text]["oitava"],nota,notadados ,duracao=duracao)     
     if event.type == KEYUP:
         pygame.mixer.stop()
     pygame.display.update()
