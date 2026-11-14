@@ -4,13 +4,29 @@ from sys import exit
 import numpy as np
 import time
 
-duracao=3
+duracao=1
 sample_rate = 44100
 
-la4=440
-si4=493.8833
-do4=523.2511
-re4=587.3295
+notas = {
+    "la4": 440,
+    "la#4":466.1638,
+    "si4": 493.8833,
+    "do5": 523.2511,
+    "do#5":554.3653,
+    "re5": 587.3295
+    }
+
+teclas={
+    "a":"la4",
+    "A":"la#4",
+    "s":"si4",
+    "d":"do5",
+    "D":"do#5",
+    "f":"re5"
+
+}
+
+print(notas["la4"])
 
 def play_tone(frequency, duration=0.5, volume=0.5):  
   t = np.linspace(0, duration, int(sample_rate * duration), True)
@@ -34,15 +50,17 @@ while True:
         if event.type == pygame.QUIT:
             exit()
     sound=0
-    if event.type == TEXTINPUT :        
+    if event.type == TEXTINPUT :   
+        if event.text in teclas:
+         sound=play_tone(notas[teclas[event.text]], duration=duracao)     
         if event.text == K_LEFT:  
             move_x = -0.3  # object moves -0.3 towards x axis
             play_tone(re4, duration=duracao)
             print("pressed LEFT")
         elif event.text == "a":  
             move_x = +0.3  # object moves 0.3 towards x axis
-            sound=play_tone(la4, duration=duracao)
-            print(ord(event.text ))
+           # sound=play_tone(notas["la4"], duration=duracao)
+            #print(ord(event.text ))
         elif event.text == K_UP: 
             move_y = -0.3  # object moves -0.3 towards y axis
             print("pressed UP")
@@ -56,13 +74,14 @@ while True:
             img = pygame.image.load("char.png")
             pygame.display.update()  # update image
     if event.type == KEYUP:
+        pygame.mixer.stop()
         if event.key == K_LEFT:
             move_x = 0  # movement stops
         elif event.key == K_RIGHT:  
             move_x = 0  # movement stops
         elif event.key == K_a:  
             move_x = 0  # movement stops
-            pygame.mixer.stop()
+            
         elif event.key == K_UP: 
             move_y = 0  # movement stops
         elif event.key == K_DOWN:  
