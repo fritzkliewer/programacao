@@ -34,6 +34,7 @@ pygame.init()
 size = width, height = 740, 480
 screen = pygame.display.set_mode(size)
 img = pygame.image.load("char.png").convert()
+img = pygame.transform.scale(img,(100,100))
 x, y = 0, 0
 move_x, move_y = 0, 0
 
@@ -43,6 +44,9 @@ while True:
             exit()
     sound=0
     if event.type == KEYDOWN :   
+        if event.key == K_TAB:
+            img = pygame.transform.rotate(img,1)
+            img = pygame.transform.scale(img,(100,100))
         if event.key == K_LEFT:  
             move_x = -0.3  # object moves -0.3 towards x axis
             print("pressed LEFT")
