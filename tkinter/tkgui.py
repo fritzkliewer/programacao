@@ -18,10 +18,10 @@ def select_items():
      labsel.config(text=selpeixes)
 
 def selection():
-    labrad.config(text=f"Selected: {variable.get()}")
+    labrad.config(text=f"Selecionado: {variable.get()}")
 
 
-def return_pressed(event):
+def enter_pressionado(event):
     label.config(text=event.widget.get())
 
 def clique(event):
@@ -56,7 +56,7 @@ label=ttk.Label(frm, text="Olá pessoal!")
 label.grid(column=0, row=0)
 
 entry=ttk.Entry(frm, text="digite")
-entry.bind("<Return>", return_pressed)
+entry.bind("<Return>", enter_pressionado)
 entry.grid(column=0, row=1)
 
 botao = ttk.Button(frm, text='Clique aqui')
