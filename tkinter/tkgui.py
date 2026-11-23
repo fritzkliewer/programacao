@@ -27,11 +27,27 @@ def return_pressed(event):
 def clique(event):
     messagebox.showinfo(title="mensagem", message="olá pessoal")
 
+def acao_novo():
+    messagebox.askokcancel("Novo arquivo", "Quer criar um novo arquivo?")
+    print("Novo arquivo criado")
+
 def quit(event):                    
     sys.exit() 
 
 root = Tk()
 root.geometry("600x500") 
+
+menubar = Menu(root)
+root.config(menu=menubar)
+
+# 2. Cria um submenu (tearoff=0 remove a linha tracejada inicial)
+menu_arquivo = Menu(menubar, tearoff=0)
+menu_arquivo.add_command(label="Novo", command=acao_novo, accelerator="Ctrl+N")
+menu_arquivo.add_separator()
+menu_arquivo.add_command(label="Sair", command=root.quit)
+
+# 3. Adiciona o submenu à barra principal
+menubar.add_cascade(label="Arquivo", menu=menu_arquivo)
 
 frm = ttk.Frame(root, padding=10)
 frm.grid()
