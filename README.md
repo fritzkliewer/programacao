@@ -44,6 +44,10 @@ executar:
 ```bash
 python3 [nome do arquivo].py
 ```
+kivy instalação:
+```bash
+pip install "kivy[base]" kivy_examples --break-system-packages
+```
 ## Licença
 
 [MIT](https://choosealicense.com/licenses/mit/)
